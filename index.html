@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CPU Scheduling Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>CPU Scheduling Simulator</h1>
+            <p>Visualize and compare CPU scheduling algorithms</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Algorithm Selection -->
+
+        <section class="card">
+
+            <h2>Scheduling Algorithm</h2>
+
+            <div class="algorithm-container">
+
+                <label for="algorithm">
+                    Select Algorithm
+                </label>
+
+                <select id="algorithm">
+
+                    <option value="FCFS">
+                        First Come First Serve (FCFS)
+                    </option>
+
+                    <option value="SJF">
+                        Shortest Job First (SJF)
+                    </option>
+
+                    <option value="SRTF">
+                        Shortest Remaining Time First (SRTF)
+                    </option>
+
+                    <option value="RR">
+                        Round Robin
+                    </option>
+
+                    <option value="PRIORITY">
+                        Priority Scheduling
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="quantumContainer" class="hidden">
+
+                <label for="quantum">
+                    Time Quantum
+                </label>
+
+                <input
+                    type="number"
+                    id="quantum"
+                    min="1"
+                    value="2"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- Process Input -->
+
+        <section class="card">
+
+            <h2>Process Input</h2>
+
+            <div class="input-grid">
+
+                <input
+                    type="text"
+                    id="processId"
+                    placeholder="Process ID (P1)"
+                >
+
+                <input
+                    type="number"
+                    id="arrivalTime"
+                    placeholder="Arrival Time"
+                    min="0"
+                >
+
+                <input
+                    type="number"
+                    id="burstTime"
+                    placeholder="Burst Time"
+                    min="1"
+                >
+
+                <input
+                    type="number"
+                    id="priority"
+                    placeholder="Priority"
+                    min="1"
+                >
+
+                <button id="addProcess">
+                    Add Process
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>PID</th>
+                            <th>Arrival Time</th>
+                            <th>Burst Time</th>
+                            <th>Priority</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="processTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Control Buttons -->
+
+        <section class="controls">
+
+            <button id="simulateBtn" class="primary">
+                Run Simulation
+            </button>
+
+            <button id="sampleBtn">
+                Load Sample Data
+            </button>
+
+            <button id="clearBtn">
+                Clear All
+            </button>
+
+        </section>
+
+
+        <!-- Results -->
+
+        <section id="results" class="hidden">
+
+            <div class="card">
+
+                <h2>Gantt Chart</h2>
+
+                <div id="ganttChart" class="gantt">
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Process Results</h2>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>PID</th>
+                                <th>Arrival</th>
+                                <th>Burst</th>
+                                <th>Priority</th>
+                                <th>Completion</th>
+                                <th>Turnaround</th>
+                                <th>Waiting</th>
+                                <th>Response</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="resultTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <div class="statistics">
+
+                <div class="stat-card">
+
+                    <h3>Average Waiting Time</h3>
+
+                    <p id="avgWaiting">
+                        0
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>Average Turnaround Time</h3>
+
+                    <p id="avgTurnaround">
+                        0
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>Average Response Time</h3>
+
+                    <p id="avgResponse">
+                        0
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>CPU Utilization</h3>
+
+                    <p id="cpuUtilization">
+                        0%
+                    </p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>Throughput</h3>
+
+                    <p id="throughput">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
